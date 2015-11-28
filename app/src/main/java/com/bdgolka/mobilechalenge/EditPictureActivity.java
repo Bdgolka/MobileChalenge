@@ -9,19 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.net.URI;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import CorePrcessImage.ProcessingImage.InjectionDependency;
-import CorePrcessImage.ProcessingImage.RotateLeft;
-import CorePrcessImage.ReadWriteImage;
 
 public class EditPictureActivity extends AppCompatActivity {
 
@@ -29,12 +20,12 @@ public class EditPictureActivity extends AppCompatActivity {
     private Uri myUri;
 
     //Buttons
-    Button buttonRotateLeft;
-    Button buttonRotateRight;
-    Button buttonBlackAndWhite;
-    Button buttonClose;
-    Button buttonOK;
-    Button buttonContrast;
+    ImageButton buttonRotateLeft;
+    ImageButton buttonRotateRight;
+    ImageButton buttonBlackAndWhite;
+    ImageButton buttonClose;
+    ImageButton buttonOK;
+    ImageButton buttonContrast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +37,7 @@ public class EditPictureActivity extends AppCompatActivity {
         previewCapturedImage();
 
         //Set onclick listeners to buttons
-       /* buttonRotateLeft = (Button) findViewById(R.id.buttonRoateLeft);
+      buttonRotateLeft = (ImageButton) findViewById(R.id.buttonRoateLeft);
         buttonRotateLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +45,7 @@ public class EditPictureActivity extends AppCompatActivity {
             }
         });
 
-       buttonRotateRight = (Button) findViewById(R.id.buttonRotateRight);
+       buttonRotateRight = (ImageButton) findViewById(R.id.buttonRotateRight);
         buttonRotateRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +53,7 @@ public class EditPictureActivity extends AppCompatActivity {
             }
         });
 
-        buttonBlackAndWhite = (Button) findViewById(R.id.buttonBlackAndWhite);
+        buttonBlackAndWhite = (ImageButton) findViewById(R.id.buttonBlackAndWhite);
         buttonBlackAndWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +61,7 @@ public class EditPictureActivity extends AppCompatActivity {
             }
         });
 
-        buttonClose = (Button) findViewById(R.id.buttonClose);
+        buttonClose = (ImageButton) findViewById(R.id.buttonClose);
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +69,7 @@ public class EditPictureActivity extends AppCompatActivity {
             }
         });
 
-        buttonOK = (Button) findViewById(R.id.buttonOK);
+        buttonOK = (ImageButton) findViewById(R.id.buttonOK);
         buttonOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,13 +77,13 @@ public class EditPictureActivity extends AppCompatActivity {
             }
         });
 
-        buttonContrast = (Button) findViewById(R.id.buttonContrast);
+        buttonContrast = (ImageButton) findViewById(R.id.buttonContrast);
         buttonContrast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
-        });*/
+        });
     }
 
     private void previewCapturedImage() {
