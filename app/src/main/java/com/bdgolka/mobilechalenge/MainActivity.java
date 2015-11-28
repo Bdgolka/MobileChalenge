@@ -31,14 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
     private Uri fileUri; // file url to store image
     private Button btnCapturePicture;
-    private ImageView imgPreview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        imgPreview = (ImageView) findViewById(R.id.imgPreview);
 
         btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
 
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Receiving activity result method will be called after closing the camera
-     * */
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // if the result is capturing Image
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 //Start Edit activity
                 Intent intent = new Intent(this, EditPictureActivity.class);
                 intent.putExtra("fileUri", fileUri.toString());
-              startActivity(intent);
+                startActivity(intent);
 
 
             } else if (resultCode == RESULT_CANCELED) {
@@ -99,63 +97,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*
-     * Display image from a path to ImageView
-     */
-    private void previewCapturedImage() {
-        try {
-
-            imgPreview.setVisibility(View.VISIBLE);
-
-            // bimatp factory
-            BitmapFactory.Options options = new BitmapFactory.Options();
-
-            // downsizing image as it throws OutOfMemory Exception for larger
-            // images
-            options.inSampleSize = 8;
-
-            final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
-                    options);
-
-            imgPreview.setImageBitmap(bitmap);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
-     * Here we store the file url as it will be null after returning from camera
-     * app
-     */
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        // save file url in bundle as it will be null on scren orientation
-        // changes
-        outState.putParcelable("file_uri", fileUri);
-    }
-
-    /*
-     * Here we restore the fileUri again
-     */
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        // get the file url
-        fileUri = savedInstanceState.getParcelable("file_uri");
-    }
-
-    /**
-     * Creating file uri to store image/video
+     * Creating file uri to store image
      */
     public Uri getOutputMediaFileUri(int type) {
         return Uri.fromFile(getOutputMediaFile(type));
     }
 
     /*
-     * returning image / video
+     * returning image
      */
     private static File getOutputMediaFile(int type) {
 
