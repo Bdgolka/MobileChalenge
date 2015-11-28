@@ -1,5 +1,6 @@
 package com.bdgolka.mobilechalenge;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.net.URI;
@@ -44,24 +46,53 @@ public class EditPictureActivity extends AppCompatActivity {
         previewCapturedImage();
 
         //Set onclick listeners to buttons
-        /*buttonRotateLeft = (Button) findViewById(R.id.buttonRoateLeft);
+       /* buttonRotateLeft = (Button) findViewById(R.id.buttonRoateLeft);
         buttonRotateLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ReadWriteImage image = new ReadWriteImage(myUri.getPath());
-                //InjectionDependency dependency = new RotateLeft();
+
             }
         });
 
-        buttonRotateRight = (Button) findViewById(R.id.buttonRotateRight);
+       buttonRotateRight = (Button) findViewById(R.id.buttonRotateRight);
         buttonRotateRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ReadWriteImage image = new ReadWriteImage(myUri.getPath());
-                //InjectionDependency dependency = new RotateLeft();
+
+            }
+        });
+
+        buttonBlackAndWhite = (Button) findViewById(R.id.buttonBlackAndWhite);
+        buttonBlackAndWhite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        buttonClose = (Button) findViewById(R.id.buttonClose);
+        buttonClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        buttonOK = (Button) findViewById(R.id.buttonOK);
+        buttonOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(EditPictureActivity.this, "Picture was saved", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        buttonContrast = (Button) findViewById(R.id.buttonContrast);
+        buttonContrast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });*/
-
     }
 
     private void previewCapturedImage() {

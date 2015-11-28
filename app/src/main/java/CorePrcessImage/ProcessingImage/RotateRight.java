@@ -2,12 +2,13 @@ package CorePrcessImage.ProcessingImage;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.test.InstrumentationTestCase;
 import android.util.Log;
 
 /**
  * Class which rotate by 90 degree to right
  */
-public class RotateRight implements EditImage {
+public class RotateRight extends InstrumentationTestCase implements EditImage  {
     //TAG for log
     private static final String TAG = "Rotate right class";
 
