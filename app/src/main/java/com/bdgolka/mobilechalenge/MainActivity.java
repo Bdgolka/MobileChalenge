@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private void captureImage() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        //fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 
