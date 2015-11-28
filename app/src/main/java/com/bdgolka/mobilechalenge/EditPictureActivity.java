@@ -13,6 +13,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import CorePrcessImage.ProcessingImage.EditImage;
+import CorePrcessImage.ProcessingImage.RotateRight;
+import CorePrcessImage.ReadWriteImage;
+
 
 public class EditPictureActivity extends AppCompatActivity {
 
@@ -41,6 +45,7 @@ public class EditPictureActivity extends AppCompatActivity {
         buttonRotateLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(EditPictureActivity.this, "Rotated Left", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -49,7 +54,10 @@ public class EditPictureActivity extends AppCompatActivity {
         buttonRotateRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*ReadWriteImage image = new ReadWriteImage(myUri.getPath());
+                EditImage operation = new RotateRight();
+                imgPreview.setImageBitmap(operation.EditImage());*/
+                Toast.makeText(EditPictureActivity.this, "Rotated Right", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -57,6 +65,7 @@ public class EditPictureActivity extends AppCompatActivity {
         buttonBlackAndWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(EditPictureActivity.this, "Applied Black & White", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -65,6 +74,7 @@ public class EditPictureActivity extends AppCompatActivity {
         buttonClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(EditPictureActivity.this, "Return to Main Activity", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -81,6 +91,7 @@ public class EditPictureActivity extends AppCompatActivity {
         buttonContrast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(EditPictureActivity.this, "Contrast was changed", Toast.LENGTH_SHORT).show();
 
             }
         });
