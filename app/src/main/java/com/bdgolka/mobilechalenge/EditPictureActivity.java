@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -16,12 +17,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class EditPictureActivity extends AppCompatActivity{
+import CorePrcessImage.ProcessingImage.InjectionDependency;
+import CorePrcessImage.ProcessingImage.RotateLeft;
+import CorePrcessImage.ReadWriteImage;
+
+public class EditPictureActivity extends AppCompatActivity {
 
     private ImageView imgPreview;
     private Uri myUri;
 
-    public static final int MEDIA_TYPE_IMAGE = 1;
+    //Buttons
+    Button buttonRotateLeft;
+    Button buttonRotateRight;
+    Button buttonBlackAndWhite;
+    Button buttonClose;
+    Button buttonOK;
+    Button buttonContrast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +40,28 @@ public class EditPictureActivity extends AppCompatActivity{
         setContentView(R.layout.activity_edit_picture);
 
         imgPreview = (ImageView) findViewById(R.id.imgPreview);
-
         myUri = Uri.parse(getIntent().getStringExtra("fileUri"));
-
         previewCapturedImage();
+
+        //Set onclick listeners to buttons
+        /*buttonRotateLeft = (Button) findViewById(R.id.buttonRoateLeft);
+        buttonRotateLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReadWriteImage image = new ReadWriteImage(myUri.getPath());
+                //InjectionDependency dependency = new RotateLeft();
+            }
+        });
+
+        buttonRotateRight = (Button) findViewById(R.id.buttonRotateRight);
+        buttonRotateRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ReadWriteImage image = new ReadWriteImage(myUri.getPath());
+                //InjectionDependency dependency = new RotateLeft();
+            }
+        });*/
+
     }
 
     private void previewCapturedImage() {
@@ -79,8 +108,6 @@ public class EditPictureActivity extends AppCompatActivity{
         // get the file url
         myUri = savedInstanceState.getParcelable("file_uri");
     }
-
-
 
 
 }

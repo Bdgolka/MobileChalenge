@@ -57,6 +57,12 @@
             android:layout_height="match_parent"
             android:src="@drawable/ok" />
 
+        <ImageButton
+            android:id="@+id/buttonContrast"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/contrast" />
+
 
     </LinearLayout>
 
