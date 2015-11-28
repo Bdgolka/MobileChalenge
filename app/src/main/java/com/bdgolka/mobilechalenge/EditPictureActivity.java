@@ -1,107 +1,43 @@
 package com.bdgolka.mobilechalenge;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+public class EditPictureActivity extends AppCompatActivity{
 
-public class MainActivity extends AppCompatActivity {
+    private ImageView imgPreview;
+    private Uri myUri;
 
-    // Activity request codes
-    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
-    public static final int MEDIA_TYPE_IMAGE = 1;
-
-    // directory name to store captured images
+    // directory name to store captured images and videos
     private static final String IMAGE_DIRECTORY_NAME = "Hello Camera";
 
-    private Uri fileUri; // file url to store image
-    private Button btnCapturePicture;
-    private ImageView imgPreview;
+    public static final int MEDIA_TYPE_IMAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_edit_picture);
 
         imgPreview = (ImageView) findViewById(R.id.imgPreview);
 
-        btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
+        myUri = Uri.parse(getIntent().getStringExtra("fileUri"));
 
-
-        /**
-         * Capture image button click event
-         * */
-        btnCapturePicture.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // capture picture
-                captureImage();
-            }
-        });
+        previewCapturedImage();
     }
 
-    /*
- * Capturing Camera Image will lauch camera app requrest image capture
- */
-    private void captureImage() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-        // start the image capture Intent
-        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
-    }
-
-    /**
-     * Receiving activity result method will be called after closing the camera
-     * */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // if the result is capturing Image
-        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-
-                //Start Edit activity
-                Intent intent = new Intent(this, EditPictureActivity.class);
-                intent.putExtra("fileUri", fileUri.toString());
-              startActivity(intent);
-
-
-            } else if (resultCode == RESULT_CANCELED) {
-                // user cancelled Image capture
-                Toast.makeText(getApplicationContext(),
-                        "User cancelled image capture", Toast.LENGTH_SHORT)
-                        .show();
-            } else {
-                // failed to capture image
-                Toast.makeText(getApplicationContext(),
-                        "Sorry! Failed to capture image", Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-    }
-
-    /*
-     * Display image from a path to ImageView
-     */
     private void previewCapturedImage() {
         try {
 
@@ -114,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             // images
             options.inSampleSize = 8;
 
-            final Bitmap bitmap = BitmapFactory.decodeFile(fileUri.getPath(),
+            final Bitmap bitmap = BitmapFactory.decodeFile(myUri.getPath(),
                     options);
 
             imgPreview.setImageBitmap(bitmap);
@@ -133,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // save file url in bundle as it will be null on scren orientation
         // changes
-        outState.putParcelable("file_uri", fileUri);
+        outState.putParcelable("file_uri", myUri);
     }
 
     /*
@@ -144,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
 
         // get the file url
-        fileUri = savedInstanceState.getParcelable("file_uri");
+        myUri = savedInstanceState.getParcelable("file_uri");
     }
 
     /**
